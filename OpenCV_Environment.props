@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <_PropertySheetDisplayName>MyOpenCV_Environment</_PropertySheetDisplayName>
+    <LibraryPath>%OPENCV_DIR%\build\x86\vc10\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>%OPENCV_DIR%\include;$(IncludePath)</IncludePath>
+    <ReferencePath>$(ReferencePath)</ReferencePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>%OPENCV_DIR%\modules\highgui\include\opencv2;%OPENCV_DIR%\modules\imgproc\include\opencv2;%OPENCV_DIR%\modules\core\include\opencv2;%OPENCV_DIR%\include;%OPENCV_DIR%\include\opencv;%OPENCV_DIR%\include\opencv2;%OPENCV_DIR%\modules\world\include;%OPENCV_DIR%\modules\videostab\include;%OPENCV_DIR%\modules\video\include;%OPENCV_DIR%\modules\ts\include;%OPENCV_DIR%\modules\stitching;%OPENCV_DIR%\modules\photo\include;%OPENCV_DIR%\modules\ocl\include;%OPENCV_DIR%\modules\objdetect\include;%OPENCV_DIR%\modules\nonfree\include;%OPENCV_DIR%\modules\ml\include;%OPENCV_DIR%\modules\legacy\include;%OPENCV_DIR%\modules\imgproc\include;%OPENCV_DIR%\modules\highgui\include;%OPENCV_DIR%\modules\gpu\include;%OPENCV_DIR%\modules\flann\include;%OPENCV_DIR%\modules\features2d\include;%OPENCV_DIR%\modules\core\include;%OPENCV_DIR%\modules\contrib\include;%OPENCV_DIR%\modules\calib3d\include;%OPENCV_DIR%\modules\androidcamera\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <ShowIncludes>false</ShowIncludes>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>opencv_core231d.lib;opencv_highgui231d.lib;opencv_imgproc231d.lib;opencv_video231d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>D:\MyProject\VisualStudioProjects;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>
