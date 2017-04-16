@@ -17,7 +17,7 @@ void VDOSGRenderer::setup() {
 	traits->x = 0;
 	traits->y = 0;
 	traits->width = resolution.right - resolution.left;
-	traits->height = resolution.bottom - resolution.top - 1;
+	traits->height = resolution.bottom - resolution.top;
 	traits->windowDecoration = false;
 	traits->doubleBuffer = true;
 	traits->sharedContext = 0;

@@ -123,17 +123,16 @@ void VDOSGViewer::selectNode(osg::ref_ptr<osg::Node> node) {
 BOOL CALLBACK clickChildFIlter(HWND   hwnd, LPARAM lParam) {
 	RECT client;
 	GetClientRect(hwnd, &client);
-	int x = HIWORD(lParam);
-	int y = LOWORD(lParam);
+	int x = LOWORD(lParam);
+	int y = HIWORD(lParam);
 	x -= client.left;
 	y -= client.top;
-	printf("click child: %d %d %d %d\n", x, y, client.left, client.top);
+	printf("click child window: %d %d %d %d\n", x, y, client.left, client.top);
 	LPARAM newPara= MAKELPARAM(x, y);
-	PostMessage(hwnd, WM_LBUTTONDOWN, 1, lParam);
-	PostMessage(hwnd, WM_LBUTTONUP, 0, lParam);
+	PostMessage(hwnd, WM_LBUTTONDOWN, 1, newPara);
+	PostMessage(hwnd, WM_LBUTTONUP, 0, newPara);
 	InvalidateRect(hwnd, NULL, TRUE);
 	UpdateWindow(hwnd);
-	SendMessage(hwnd, WM_PAINT, NULL, NULL);
 	return true;
 }
 void clickWindow(HWND handle,int offsetx,int offsety) {
@@ -142,8 +141,7 @@ void clickWindow(HWND handle,int offsetx,int offsety) {
 	PostMessage(handle, WM_LBUTTONUP, 0, lParam);
 	InvalidateRect(handle, NULL, TRUE);
 	UpdateWindow(handle);
-	SendMessage(handle, WM_PAINT, NULL, NULL);
-	printf("click child: %d %d\n", offsetx, offsety);
+	printf("click window: %d %d\n", offsetx, offsety);
 	EnumChildWindows(handle, clickChildFIlter, lParam);
 }
 void VDOSGViewer::clickNode(osg::ref_ptr<osg::Node> node, int offsetx, int offsety) {

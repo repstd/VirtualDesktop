@@ -38,5 +38,6 @@ void testScreenCapture() {
 }
 int main() {
 	VDesktopManager::getInstance().createDesktop(VDesktopManager::RenderType::OSG)->loop();
+	//testScreenCapture();
 	return 0;
 }

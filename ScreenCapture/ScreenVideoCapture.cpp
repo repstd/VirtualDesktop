@@ -60,10 +60,14 @@ void ScreenVideoCapture::captureHwnd(cv::Mat& dest) {
 		return;
 	dest.create(height, width, CV_8UC4);
 
+
 	SelectObject(hwindowCompatibleDC, hbwindow);
 	// Copy from the window device context to the bitmap device context
 	// Use BitBlt to do a copy without any stretching -- the output is of the same dimensions as the target area.
-	BitBlt(hwindowCompatibleDC, 0, 0, width, height, hwindowDC, 0, 0, SRCCOPY);
+
+	BitBlt(hwindowCompatibleDC, 0, 0, width, height, hwindowDC, 0, 0, SRCPAINT);
+
+	PrintWindow(targetWindow, hwindowCompatibleDC, 0);
 
 	// Copy into our own buffer as device-independent bitmap
 	GetDIBits(hwindowCompatibleDC, hbwindow, 0, height, dest.data, (BITMAPINFO *)&bi, DIB_RGB_COLORS);

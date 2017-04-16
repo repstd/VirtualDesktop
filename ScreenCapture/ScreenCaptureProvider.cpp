@@ -97,8 +97,7 @@ BOOL CALLBACK ScreenCaptureProvider::mWindowFilter(HWND   hwnd, LPARAM lParam) {
 	CacheItemList *pCache = ((CacheItemList*)lParam);
 	WINDOWPLACEMENT placement;
 	GetWindowPlacement(hwnd, &placement);
-	int isMinimized = placement.showCmd == SW_SHOWMINIMIZED;
-	int isNormal = placement.showCmd == SW_SHOWMAXIMIZED;
+	int isNormal = placement.showCmd == SW_SHOWMAXIMIZED || placement.showCmd == SW_NORMAL;
 	if (IsWindowVisible(hwnd) && isNormal) {
 		ScreenCaptureProvider::getInstance()->addToCache(*pCache, hwnd);
 	}
