@@ -1,6 +1,6 @@
 #include "ScreenVideoCapture.h"
 
-void ScreenVideoCapture::init(HWND window) { 
+void ScreenVideoCapture::init(HWND window) {
 	this->targetWindow = window;
 	if (this->targetWindow == NULL)
 		return;
@@ -9,7 +9,7 @@ void ScreenVideoCapture::init(HWND window) {
 		return;
 	GetClientRect(targetWindow, &this->captureArea);
 	hwindowCompatibleDC = CreateCompatibleDC(hwindowDC);
-	SetStretchBltMode(hwindowCompatibleDC, STRETCH_ANDSCANS);
+	SetStretchBltMode(hwindowCompatibleDC, COLORONCOLOR);
 
 	// Initialize a bitmap
 	int width = this->captureArea.right - this->captureArea.left;
@@ -34,10 +34,10 @@ void ScreenVideoCapture::release() {
 		DeleteObject(this->hbwindow);
 		DeleteDC(this->hwindowCompatibleDC);
 		ReleaseDC(this->targetWindow, hwindowDC);
-		this->captureArea.left = 
-		this->captureArea.right = 
-		this->captureArea.bottom = 
-		this->captureArea.top = 0;
+		this->captureArea.left =
+			this->captureArea.right =
+			this->captureArea.bottom =
+			this->captureArea.top = 0;
 	}
 }
 
@@ -65,9 +65,10 @@ void ScreenVideoCapture::captureHwnd(cv::Mat& dest) {
 	// Copy from the window device context to the bitmap device context
 	// Use BitBlt to do a copy without any stretching -- the output is of the same dimensions as the target area.
 
-	BitBlt(hwindowCompatibleDC, 0, 0, width, height, hwindowDC, 0, 0, SRCPAINT);
 
-	PrintWindow(targetWindow, hwindowCompatibleDC, 0);
+	BitBlt(hwindowCompatibleDC, 0, 0, width, height, hwindowDC, 0, 0, SRCCOPY);
+
+	//PrintWindow(targetWindow, hwindowCompatibleDC, 0);
 
 	// Copy into our own buffer as device-independent bitmap
 	GetDIBits(hwindowCompatibleDC, hbwindow, 0, height, dest.data, (BITMAPINFO *)&bi, DIB_RGB_COLORS);

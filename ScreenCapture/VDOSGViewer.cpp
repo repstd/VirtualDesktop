@@ -142,7 +142,7 @@ void clickWindow(HWND handle,int offsetx,int offsety) {
 	InvalidateRect(handle, NULL, TRUE);
 	UpdateWindow(handle);
 	printf("click window: %d %d\n", offsetx, offsety);
-	EnumChildWindows(handle, clickChildFIlter, lParam);
+	//EnumChildWindows(handle, clickChildFIlter, lParam);
 }
 void VDOSGViewer::clickNode(osg::ref_ptr<osg::Node> node, int offsetx, int offsety) {
 	if (node == NULL || node.get() == nullptr) {

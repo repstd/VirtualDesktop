@@ -7,7 +7,7 @@ VDDesktopImpl::VDDesktopImpl() {
 
 
 VDDesktopImpl::~VDDesktopImpl() {
-	VDIMUManager::getInstance().startReadingData();
+	VDIMUManager::getInstance().stopReadingData();
 }
 
 VDDesktopImpl::VDDesktopImpl(const std::shared_ptr<VDesktopRenderer>& renderer) {
